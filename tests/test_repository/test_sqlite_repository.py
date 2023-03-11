@@ -21,7 +21,7 @@ def custom_class():
 def create_bd():
     with sqlite3.connect(DATABASE_FILE) as con:
         cur = con.cursor()
-        cur.execute(f"DROP TABLE custom")
+        cur.execute(f"DROP TABLE IF EXISTS custom")
     with sqlite3.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(f"CREATE TABLE custom(field1, field2)")
