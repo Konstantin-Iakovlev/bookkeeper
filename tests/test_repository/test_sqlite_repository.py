@@ -112,14 +112,3 @@ def test_get_all_with_condition(repo, custom_class):
         objects.append(o)
     assert [objects[0]] == repo.get_all({'field1': 0})
     assert objects == repo.get_all({'field2': 'test'})
-
-def test_get_all_like(repo, custom_class):
-    objects = []
-    for i in range(5):
-        o = custom_class(field1=0)
-        o.field1 = i
-        o.field2 = 'test'
-        repo.add(o)
-        objects.append(o)
-    assert [objects[0]] == repo.get_all_like({'field1': '0'})
-    assert objects == repo.get_all_like({'field2': 'test'})

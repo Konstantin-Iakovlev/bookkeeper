@@ -71,23 +71,18 @@ class SQLiteRepository(AbstractRepository[T]):
         with sqlite3.connect(self.db_file) as con:
             cur = con.cursor()
             if where is None:
-                rows = cur.execute(
-                    f'SELECT ROWID, * FROM {self.table_name} '
-                ).fetchall()
+                cur.execute(f"SELECT ROWID, * FROM {self.table_name}")
+                rows = cur.fetchall()
             else:
-                fields = " AND ".join([f"{f} LIKE ?" for f in where.keys()])
-                rows = cur.execute(
-                    f'SELECT ROWID, * FROM {self.table_name} '
-                    + f'WHERE {fields}',
-                    list(where.values())
-                ).fetchall()
+                fields = " AND ".join(f"{x}=?" for x in where.keys())
+                fields = fields.replace("pk", "ROWID")
+                conds = list(where.values())
+                cur.execute(f"SELECT ROWID, * FROM {self.table_name} WHERE {fields}",
+                            conds)
+                rows = cur.fetchall()
         con.close()
-        return [self._row2obj(r[0], r[1:]) for r in rows]
+        return [self._row2obj(row[0], row[1:]) for row in rows]
 
-    def get_all_like(self, like: dict[str, str]) -> list[T]:
-        values = [f"%{v}%" for v in like.values()]
-        where = dict(zip(like.keys(), values))
-        return self.get_all(where=where)
 
     def update(self, obj: T) -> None:
         fields = ", ".join([f"{f}=?" for f in self.fields.keys()])
