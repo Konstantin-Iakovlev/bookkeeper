@@ -83,7 +83,6 @@ class SQLiteRepository(AbstractRepository[T]):
         con.close()
         return [self._row2obj(row[0], row[1:]) for row in rows]
 
-
     def update(self, obj: T) -> None:
         fields = ", ".join([f"{f}=?" for f in self.fields.keys()])
         values = [getattr(obj, f) for f in self.fields]

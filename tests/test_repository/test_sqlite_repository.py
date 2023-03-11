@@ -102,6 +102,7 @@ def test_get_all(repo, custom_class):
     print(repo.get_all())
     assert objects == repo.get_all()
 
+
 def test_get_all_with_condition(repo, custom_class):
     objects = []
     for i in range(5):
