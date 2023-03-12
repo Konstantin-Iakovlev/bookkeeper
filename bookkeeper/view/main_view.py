@@ -120,25 +120,25 @@ if __name__ == '__main__':
 
     window = MainWindow()
     exp_data = [
-        [format_date(datetime(2023, 3, 4)), 150, 'Чай', ''],
-        [format_date(datetime(2023, 3, 4)), 353.555, 'Кофе', ''],
-        [format_date(datetime(2023, 3, 4)), 123, 'Сыр', ''],
-        [format_date(datetime(2023, 3, 4)), 266, 'Колбаса', '']
+        [format_date(datetime(2023, 3, 4)), 200, 'Кофе', ''],
+        [format_date(datetime(2023, 3, 4)), 300, 'Сахар', ''],
+        [format_date(datetime(2023, 3, 4)), 400, 'Помидоры', '6 кг'],
+        [format_date(datetime(2023, 3, 4)), 5000, 'Яблоки', '800 г']
     ]
     window.set_expense_grid(exp_data, list(range(len(exp_data))))
 
     bdgt_data = [
-        [769, 1000],
-        [6500, 7000],
-        [8000, 30000]
+        [300, 1000],
+        [5000, 7000],
+        [100000, 300000]
     ]
     window.set_budget_grid(bdgt_data)
 
     cat_data = [
         (1, 'Продукты', None),
-        (2, 'Сыр', 1),
-        (3, 'Мясо', 1),
-        (4, 'Книги', None)
+        (2, 'Лекарства', 1),
+        (3, 'Транспорт', 1),
+        (4, 'Прочее', None)
     ]
     window.set_category_dropdown(cat_data)
 
