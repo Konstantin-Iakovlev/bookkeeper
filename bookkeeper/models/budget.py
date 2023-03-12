@@ -3,10 +3,10 @@
 """
 
 from dataclasses import dataclass
+from datetime import datetime, timedelta
 from typing import Literal
 from bookkeeper.repository.abstract_repository import AbstractRepository
 from bookkeeper.models.expense import Expense
-from datetime import datetime, timedelta
 from bookkeeper.utils import format_date
 
 
